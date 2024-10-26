@@ -27,12 +27,12 @@ DROP TABLE courses;
 -- !DELETE ALL DATA FROM TABLE
 TRUNCATE TABLE enrollment;
 
--- INSERT INTO students (student_name, age, email, frontend_mark, backend_mark, status) VALUES
--- ( 'Sameer', 21, 'sameer@example.com', 48, 60, NULL),
--- ( 'Zoya', 23, 'zoya@example.com', 52, 58, NULL),
--- ( 'Nabil', 22, 'nabil@example.com', 37, 46, NULL),
--- ( 'Rafi', 24, 'rafi@example.com', 41, 40, NULL),
--- ( 'Sophia', 22, 'sophia@example.com', 50, 52, NULL);
+INSERT INTO students (student_name, age, email, frontend_mark, backend_mark, status) VALUES
+( 'Sameer', 21, 'sameer@example.com', 48, 60, NULL),
+( 'Zoya', 23, 'zoya@example.com', 52, 58, NULL),
+( 'Nabil', 22, 'nabil@example.com', 37, 46, NULL),
+( 'Rafi', 24, 'rafi@example.com', 41, 40, NULL),
+( 'Sophia', 22, 'sophia@example.com', 50, 52, NULL);
 
 INSERT INTO
     courses (course_name, credits)
@@ -109,6 +109,8 @@ GROUP BY
 
 --? Query 7: Calculate and display the average age of all students.
 SELECT avg(age) FROM students
+
+
 --? Query 8: Retrieve the names of students whose email addresses contain 'example.com'.
 SELECT student_name FROM students WHERE email LIKE '%example.com%';
 
