@@ -76,10 +76,41 @@ WHERE
     "courses".course_name = 'Next.js';
 
 --? Query 3: Update the status of the student with the highest total (frontend_mark + backend_mark) to 'Awarded'.
-UPDATE students set status = 'Awarded' WHERE student_id = (SELECT student_id FROM students ORDER BY (frontend_mark + backend_mark) DESC LIMIT 1);
- 
+UPDATE students
+set
+    status = 'Awarded'
+WHERE
+    student_id = (
+        SELECT student_id
+        FROM students
+        ORDER BY (frontend_mark + backend_mark) DESC
+        LIMIT 1
+    );
 --? Query 4: Delete all courses that have no students enrolled.
 
+--? Query 5: Retrieve the names of students using a limit of 2, starting from the 3rd student.
+SELECT student_name
+FROM students
+ORDER BY student_id ASC
+OFFSET
+    2
+LIMIT 2;
+
+--? Query 6: Retrieve the course names and the number of students enrolled in each course.
+DELETE from courses WHERE course_id = (SELECT courses.course_id FROM courses FULL JOIN enrollment on enrollment.course_id = courses.course_id WHERE enrollment_id is NULL);
+
+SELECT
+    course_name,
+    count(*) as enrolled_students
+FROM enrollment as en
+    JOIN courses ON en.course_id = "courses".course_id
+GROUP BY
+    "courses".course_id;
+
+--? Query 7: Calculate and display the average age of all students.
+SELECT avg(age) FROM students
+--? Query 8: Retrieve the names of students whose email addresses contain 'example.com'.
+SELECT student_name FROM students WHERE email LIKE '%example.com%';
 
 SELECT * FROM students;
 
